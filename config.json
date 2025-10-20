@@ -25,6 +25,18 @@
       "availableColors": [
         "كما في الصورة"
       ]
+    },
+    "3": {
+      "name": "مودال 3",
+      "price": 10000,
+      "image": "https://raw.githubusercontent.com/Ahcene43/Top/main/images/1760997212508-Hft.jpg",
+      "description": " باب عصرية",
+      "availableSizes": [
+        "XXL"
+      ],
+      "availableColors": [
+        "كما في الصورة"
+      ]
     }
   },
   "DELIVERY_PRICES": {
