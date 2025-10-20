@@ -3,7 +3,7 @@
     "1": {
       "name": "مودال 1",
       "price": 5500,
-      "image": "https://raw.githubusercontent.com/Ahcene43/WAW/main/images/modal1.jpg",
+      "image": "https://raw.githubusercontent.com/Ahcene43/WAW/main/images/1760994079545-modal6.jpg.webp",
       "description": "تصميم مريح وعصري مع تفاصيل راقية تناسب جميع المناسبات",
       "availableSizes": [
         "S",
@@ -17,7 +17,7 @@
     "2": {
       "name": "مودال 2",
       "price": 6000,
-      "image": "https://raw.githubusercontent.com/Ahcene43/WAW/main/images/modal2.jpg",
+      "image": "https://raw.githubusercontent.com/Ahcene43/WAW/main/images/1760994151823-modle6.jpg",
       "description": "شتوي تركي فاخر",
       "availableSizes": [
         "L"
@@ -28,7 +28,6 @@
     }
   },
   "DELIVERY_PRICES": {
-    
     "01 - أدرار": {
       "home": 1100,
       "desk": 600
@@ -267,7 +266,7 @@
     "discountPerItem": 300
   },
   "STORE_INFO": {
-    "name": "BEN&KRAB-Shopp",
+    "name": "Shopping",
     "tagline": "متجر أفخم الملابس للأطفال",
     "phoneNumbers": [
       "0671466489",
