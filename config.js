@@ -8,7 +8,7 @@ async function loadRemoteConfig() {
       // المحاولة الأولى: من المستودع المحدد في الإعدادات
       const stores = JSON.parse(localStorage.getItem('stores') || '{}');
       const currentStore = localStorage.getItem('currentStore');
-      let configUrl = 'https://raw.githubusercontent.com/ahcene43/WAW/main/config.json';
+      let configUrl = 'https://raw.githubusercontent.com/ahcene43/Top/main/config.json';
       
       if (currentStore && stores[currentStore] && stores[currentStore].github) {
         const githubConfig = stores[currentStore].github;
