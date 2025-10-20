@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛒 BEN&KRAB-Shopp 🎀متجر أفخم الملابس للأطفال 🎀</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="config.js"></script>
+
+  <style>
+    :root {
+      --primary: #FF9EBC;
+      --primary-dark: #FF7BA9;
+      --secondary: #8CE0E0;
+      --secondary-dark: #6BD6D6;
+      --accent: #FFD166;
+      --success: #06D6A0;
+      --light: #F8F9FA;
+      --dark: #2D3047;
+      --gray: #6C757D;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+      --radius: 16px;
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      direction: rtl;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      color: var(--dark);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 0.8rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      max-width: 200px;
+    }
+
+    .logo i {
+      font-size: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .cart-summary {
+      background: rgba(255,255,255,0.25);
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.2);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .cart-summary:hover {
+      background: rgba(255,255,255,0.35);
+      transform: translateY(-2px);
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 1.1rem;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      background: var(--accent);
+      color: var(--dark);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* أنماط معرض الموديلات المحسن */
+    .models-section {
+      margin: 3rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .model-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .model-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .model-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .model-card:hover .model-image {
+      transform: scale(1.05);
+    }
+
+    .model-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--primary);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .model-info {
+      padding: 1.5rem;
+    }
+
+    .model-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .model-description {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .model-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .model-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .feature-tag {
+      background: var(--light);
+      color: var(--dark);
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .quick-add-btn {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .model-card:hover .quick-add-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .quick-add-btn:hover {
+      background: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+    /* نافذة تفاصيل المنتج */
+    .product-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .product-modal.show {
+      display: flex;
+    }
+
+    .product-modal-content {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .product-modal-image {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .product-modal-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .product-modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-modal-description {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .product-modal-price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(6, 214, 160, 0.1);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      width: fit-content;
+    }
+
+    .product-modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .quantity-btn {
+      background: var(--light);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .quantity-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .quantity-display {
+      font-size: 1.2rem;
+      font-weight: 600;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .product-modal-close {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--gray);
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 10001;
+    }
+
+    .product-modal-close:hover {
+      background: rgba(0,0,0,0.1);
+      color: var(--dark);
+    }
+
+    /* نمط السلايدر المحسن */
+    .slider-section {
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      background: white;
+    }
+
+    .slides-container {
+      display: flex;
+      transition: transform 0.5s ease;
+      width: 100%;
+      direction: ltr;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 550px;
+    }
+
+    .slide-image {
+      width: 100%;
+      max-width: 500px;
+      height: 350px;
+      object-fit: contain;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      background: #f8f9fa;
+    }
+
+    .slide:hover .slide-image {
+      transform: scale(1.02);
+    }
+
+    .slide-content {
+      margin-top: 1.5rem;
+      width: 100%;
+    }
+
+    .slide-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .slide-description {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .modal-price {
+      font-weight: 700;
+      color: var(--success);
+      font-size: 1.4rem;
+      background: rgba(6, 214, 160, 0.1);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .slider-dot.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--primary);
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 10;
+      box-shadow: var(--shadow);
+    }
+
+    .slider-arrow:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-arrow.prev {
+      right: 15px;
+    }
+
+    .slider-arrow.next {
+      left: 15px;
+    }
+
+    /* بقية الأنماط */
+    .progress-section {
+      margin: 2rem 0;
+    }
+
+    .progress-bar {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: 600px;
+      position: relative;
+      background: white;
+      padding: 1.2rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .progress-bar::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 80px;
+      left: 80px;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 80px;
+      width: var(--progress-width, 0%);
+      height: 6px;
+      background: linear-gradient(to left, var(--primary), var(--secondary));
+      border-radius: 3px;
+      z-index: 2;
+      transition: width 0.5s ease;
+      transform: translateY(-50%);
+    }
+
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+      flex: 1;
+    }
+
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      transition: var(--transition);
+      border: 3px solid white;
+      box-shadow: var(--shadow);
+    }
+
+    .progress-step.active .step-icon {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .progress-step.completed .step-icon {
+      background: var(--success);
+      color: white;
+    }
+
+    .step-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    .progress-step.active .step-label {
+      color: var(--primary);
+    }
+
+    .progress-step.completed .step-label {
+      color: var(--success);
+    }
+
+    .form-section {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-title {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .form-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+      font-size: 1rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-size: 0.95rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      font-family: "Cairo", sans-serif;
+      background: #f8f9fa;
+    }
+
+    .input-with-icon input, 
+    .input-with-icon select {
+      padding-left: 2.5rem;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 158, 188, 0.1);
+      outline: none;
+      background: white;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .pieces-container {
+      display: grid;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .piece {
+      border: 2px dashed var(--primary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      background: #f8fafc;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .piece:hover {
+      border-style: solid;
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .piece-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .piece-number {
+      background: var(--primary);
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .remove-piece {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .remove-piece:hover {
+      background: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+    .piece-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .piece-image-container {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    .piece-image-container img {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .piece-image-container img:hover {
+      transform: scale(1.02);
+    }
+
+    .piece-image-description {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .btn {
+      padding: 0.9rem 1.8rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: "Cairo", sans-serif;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, var(--success), #05b88c);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    #addPieceBtn {
+      display: block;
+      margin: 0 auto 1.5rem;
+      padding: 0.9rem 1.8rem;
+      font-size: 0.95rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    .clear-data-btn {
+      background: var(--gray);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      padding: 0.7rem 1.2rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .clear-data-btn:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    .info-bar {
+      background: linear-gradient(135deg, #87CEEB, #4682B4);
+      color: black;
+      padding: 0.8rem 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin: 1.5rem 0;
+      cursor: pointer;
+      border-radius: var(--radius);
+    }
+
+    .info-bar-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: moveText 25s linear infinite;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+
+    .info-bar.paused .info-bar-content {
+      animation-play-state: paused;
+    }
+
+    @keyframes moveText {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .price-box {
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      margin: 1.5rem 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .price-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--success), var(--primary));
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+    }
+
+    .price-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .price-header i {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .price-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px dashed #cbd5e1;
+    }
+
+    .price-total {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 2px solid var(--primary);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .discount-badge {
+      background: var(--accent);
+      color: var(--dark);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 2.5rem;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 1.5rem 0;
+    }
+
+    .loading.fixed-loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10000;
+      background: white;
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #e2e8f0;
+      border-top: 5px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1.2rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--gray);
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 10001;
+    }
+
+    .modal-close:hover {
+      background: rgba(0,0,0,0.1);
+      color: var(--dark);
+    }
+
+    .modal-icon {
+      font-size: 2.5rem;
+      color: var(--success);
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      font-size: 1.3rem;
+      color: var(--success);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    .order-summary {
+      background: var(--light);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: right;
+      font-size: 0.85rem;
+    }
+
+    .summary-title {
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .admin-float-btn {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      background: linear-gradient(135deg, #FF9EBC, #FF7BA9);
+      color: white;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      z-index: 1000;
+      font-size: 1.4rem;
+      box-shadow: 0 6px 20px rgba(255, 158, 188, 0.4);
+      transition: var(--transition);
+      border: 3px solid white;
+    }
+
+    .admin-float-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(255, 158, 188, 0.6);
+    }
+
+    .personal-section {
+      display: none;
+    }
+
+    .personal-section.active {
+      display: block;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cta-button {
+      display: block;
+      margin: 1rem auto;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #ff9ebc, #ff7ba9);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 158, 188, 0.4);
+      text-align: center;
+      width: fit-content;
+      animation: pulse 1s infinite;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 158, 188, 0.6);
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 158, 188, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 158, 188, 0.6);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 158, 188, 0.4);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    #phone {
+      direction: ltr;
+      text-align: right;
+    }
+    
+    #phone::placeholder {
+      text-align: right;
+    }
+
+    .password-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .password-modal.show {
+      display: flex;
+    }
+
+    .password-content {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    .password-input {
+      margin: 1.5rem 0;
+    }
+
+    .password-input input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      text-align: center;
+      letter-spacing: 5px;
+    }
+
+    .password-error {
+      color: #e74c3c;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .refresh-btn {
+      background: linear-gradient(135deg, #4ECDC4, #3BB4AC);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      padding: 0.7rem 1.2rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin: 0.5rem;
+    }
+
+    .refresh-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .header-content {
+        justify-content: space-between;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .logo {
+        font-size: 1rem;
+        max-width: 160px;
+      }
+      
+      .cart-summary {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+      
+      .models-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .model-image {
+        height: 220px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .slide {
+        padding: 1rem;
+        min-height: 450px;
+      }
+      
+      .slide-image {
+        height: 250px;
+        max-width: 90%;
+      }
+      
+      .progress-bar {
+        padding: 1rem;
+      }
+      
+      .progress-bar::before,
+      .progress-bar::after {
+        right: 60px;
+        left: 60px;
+      }
+      
+      .step-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+      }
+      
+      .form-section {
+        padding: 1.2rem;
+      }
+      
+      .piece-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .piece-image-container img {
+        max-height: 250px;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+      }
+      
+      .slider-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      
+      .modal-content {
+        padding: 1.2rem;
+        margin: 1rem;
+      }
+      
+      .product-modal-content {
+        grid-template-columns: 1fr;
+        max-width: 90%;
+      }
+      
+      .admin-float-btn {
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-section {
+        padding: 1rem;
+      }
+      
+      .piece {
+        padding: 1rem;
+      }
+      
+      .price-box {
+        padding: 1rem;
+      }
+      
+      .modal-content {
+        padding: 1rem;
+      }
+      
+      .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .slide-image {
+        height: 200px;
+      }
+      
+      .models-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="mainHeader">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-crown"></i>
+          <span id="storeNameHeader">BEN&KRAB-Shopp</span>
+        </div>
+        <div class="nav-links">
+          <a href="#models" class="nav-link"><i class="fas fa-images"></i> معرض الموديلات</a>
+          <a href="#orderForm" class="nav-link"><i class="fas fa-shopping-cart"></i> اطلب الآن</a>
+        </div>
+        <a href="#orderForm" class="cart-summary" id="cartSummary">
+          <div class="cart-icon">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </div>
+          <span id="cartItemsCount">0 عناصر</span>
+          <span>|</span>
+          <span id="cartTotalPrice">0 دج</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- معرض الموديلات المحسن -->
+    <section class="models-section" id="models">
+      <h2 class="section-title"><i class="fas fa-star"></i> أحدث موديلات الأطفال</h2>
+      <div class="models-grid" id="modelsGrid">
+        <!-- سيتم إضافة الموديلات ديناميكياً -->
+      </div>
+      
+      <a href="#orderForm" class="cta-button">
+        <i class="fas fa-shopping-cart"></i>
+        ابدأ التسوق الآن
+      </a>
+    </section>
+
+    <!-- السلايدر المحسن -->
+    <section class="slider-section">
+      <div class="slideshow-container">
+        <button class="slider-arrow prev" id="prevSlide">❮</button>
+        <div class="slides-container" id="slidesContainer">
+          <!-- سيتم إضافة الشرائح ديناميكياً -->
+        </div>
+        <button class="slider-arrow next" id="nextSlide">❯</button>
+      </div>
+      <div class="slider-nav" id="sliderNav">
+        <!-- سيتم إضافة النقاط ديناميكياً -->
+      </div>
+    </section>
+
+    <!-- شريط التقدم -->
+    <section class="progress-section">
+      <div class="progress-bar">
+        <div class="progress-step active" data-step="1">
+          <div class="step-icon">1</div>
+          <div class="step-label"> إختر منتجاتك</div>
+        </div>
+        <div class="progress-step" data-step="2">
+          <div class="step-icon">2</div>
+          <div class="step-label">المعلومات الشخصية</div>
+        </div>
+        <div class="progress-step" data-step="3">
+          <div class="step-icon">3</div>
+          <div class="step-label">تأكيد الطلب</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- نموذج الطلب -->
+    <form id="orderForm">
+      <section class="form-section" id="step1">
+        <h2 class="form-title"><i class="fas fa-shopping-cart"></i> اختر منتجاتك</h2>
+        
+        <div class="pieces-container" id="piecesContainer">
+          <!-- سيتم إضافة القطع ديناميكياً -->
+        </div>
+
+        <button type="button" id="addPieceBtn" class="btn btn-secondary">
+          <i class="fas fa-plus"></i> إختر مودال طفلك 
+        </button>
+        
+        <div class="form-group">
+          <label for="wilaya"><i class="fas fa-map-marker-alt"></i> اختر الولاية لمعرفة سعر التوصيل</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <select id="wilaya" name="wilaya" required>
+              <option value="">-- اختر الولاية --</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="deliveryType"><i class="fas fa-truck"></i> نوع التوصيل</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i class="fas fa-truck"></i></span>
+            <select id="deliveryType" name="deliveryType">
+              <option value="home">التوصيل إلى باب المنزل</option>
+              <option value="desk">التوصيل الى المكتب</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="info-bar" id="infoBar">
+          <div class="info-bar-content" id="infoBarContent">
+            <!-- سيتم إضافة المحتوى ديناميكياً -->
+          </div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-header">
+            <i class="fas fa-receipt"></i>
+            <h3 class="price-title">تفاصيل الطلب</h3>
+          </div>
+          <div class="price-item">
+            <span>سعر القطعة:</span>
+            <span id="unitPrice">0 دج</span>
+          </div>
+          <div class="price-item">
+            <span>عدد القطع:</span>
+            <span id="piecesCount">0</span>
+          </div>
+          <div class="price-item">
+            <span>المجموع الجزئي:</span>
+            <span id="subtotal">0 دج</span>
+          </div>
+          <div class="price-item">
+            <span>تكلفة التوصيل:</span>
+            <span id="deliveryCost">0 دج</span>
+          </div>
+          <div class="price-total">
+            <span>المجموع الكلي:</span>
+            <span id="totalPrice">0 دج</span>
+          </div>
+          <div class="price-item" id="discountInfo" style="display: none;">
+            <span>خصم الكمية:</span>
+            <span id="discountAmount">-300 دج</span>
+          </div>
+        </div>
+        
+        <div class="btn-group">
+          <button type="button" id="nextToStep2" class="btn btn-primary">
+            التالي <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+      </section>
+
+      <section class="form-section personal-section" id="step2">
+        <h2 class="form-title"><i class="fas fa-user"></i> معلومات الاتصال</h2>
+        
+        <div class="form-group">
+          <label for="name">الاسم الكامل</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i class="fas fa-user"></i></span>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">رقم الهاتف</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i class="fas fa-phone"></i></span>
+            <input type="tel" id="phone" name="phone" pattern="^[0-9]{10}$" maxlength="10" required autocomplete="tel" placeholder="أدخل رقم الهاتف">
+          </div>
+          <small style="color: var(--gray); display: block; margin-top: 0.25rem;">يجب أن يتكون من 10 أرقام</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="daire">الدائرة</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i class="fas fa-map"></i></span>
+            <input type="text" id="daire" name="daire" required autocomplete="address-level3">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="address">العنوان الكامل</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i class="fas fa-home"></i></span>
+            <textarea id="address" name="address" rows="3" required autocomplete="street-address"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group" style="text-align: center; margin-top: 1rem;">
+          <button type="button" id="clearSavedData" class="clear-data-btn">
+            <i class="fas fa-trash"></i> مسح البيانات المحفوظة
+          </button>
+        </div>
+
+        <div class="btn-group">
+          <button type="button" id="backToStep1" class="btn btn-secondary">
+            <i class="fas fa-arrow-right"></i> الرجوع
+          </button>
+          <button type="button" id="nextToStep3" class="btn btn-primary">
+            التالي <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+      </section>
+
+      <section class="form-section personal-section" id="step3">
+        <h2 class="form-title"><i class="fas fa-check-circle"></i> تأكيد الطلب</h2>
+        
+        <div class="order-summary">
+          <h3 class="summary-title">ملخص طلبك</h3>
+          <div id="orderSummary">
+            <!-- سيتم إضافة ملخص الطلب ديناميكياً -->
+          </div>
+        </div>
+        
+        <div class="btn-group">
+          <button type="button" id="backToStep2" class="btn btn-secondary">
+            <i class="fas fa-arrow-right"></i> الرجوع
+          </button>
+          <button type="submit" id="submitOrder" class="btn btn-success">
+            <i class="fas fa-check"></i> تأكيد وإرسال الطلب
+          </button>
+        </div>
+      </section>
+
+      <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p><i class="fas fa-spinner fa-spin"></i> جاري معالجة طلبك...</p>
+        <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem;">قد تستغرق العملية بضع ثوانٍ</p>
+      </div>
+    </form>
+  </div>
+
+  <!-- نافذة تفاصيل المنتج -->
+  <div class="product-modal" id="productModal">
+    <div class="product-modal-content">
+      <button class="product-modal-close" onclick="closeProductModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="product-modal-image-container">
+        <img id="productModalImage" class="product-modal-image" src="" alt="">
+      </div>
+      
+      <div class="product-modal-info">
+        <h2 id="productModalTitle" class="product-modal-title"></h2>
+        <p id="productModalDescription" class="product-modal-description"></p>
+        
+        <div id="productModalPrice" class="product-modal-price">
+          <i class="fas fa-tag"></i>
+          <span id="productModalPriceValue"></span>
+        </div>
+        
+        <div class="product-modal-actions">
+          <div class="quantity-selector">
+            <button class="quantity-btn" id="decreaseQuantity">-</button>
+            <span class="quantity-display" id="quantityDisplay">1</span>
+            <button class="quantity-btn" id="increaseQuantity">+</button>
+          </div>
+          
+          <button class="btn btn-primary btn-full" id="addToCartFromModal">
+            <i class="fas fa-cart-plus"></i> أضف إلى السلة
+          </button>
+          
+          <button class="btn btn-secondary btn-full" onclick="closeProductModal()">
+            <i class="fas fa-arrow-left"></i> متابعة التسوق
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- النوافذ المنبثقة -->
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+      <h2 class="modal-title">تم استقبال طلبك بنجاح!</h2>
+      <div class="modal-body">
+        <p>شكرًا لك على طلبك في <strong id="modalStoreName">BEN&KRAB-Shopp</strong>.</p>
+        <p><i class="fas fa-phone"></i> سيتواصل معك فريق المبيعات قريبا لتأكيد الطلب وتفاصيل التوصيل.</p>
+        <div class="order-summary">
+          <h3 class="summary-title">تفاصيل طلبك</h3>
+          <div id="modalOrderSummary">
+            <!-- سيتم إضافة ملخص الطلب ديناميكياً -->
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="closeModal()">موافق</button>
+    </div>
+  </div>
+
+  <div class="password-modal" id="passwordModal">
+    <div class="password-content">
+      <h2 class="form-title"><i class="fas fa-lock"></i> كلمة المرور</h2>
+      <p>الرجاء إدخال كلمة المرور للوصول إلى الإعدادات</p>
+      <div class="password-input">
+        <input type="password" id="adminPassword" placeholder="أدخل كلمة المرور">
+        <div class="password-error" id="passwordError">كلمة المرور غير صحيحة!</div>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" onclick="closePasswordModal()">إلغاء</button>
+        <button type="button" class="btn btn-primary" onclick="checkPassword()">دخول</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- زر الإدارة العائم -->
+  <a href="#" class="admin-float-btn" id="adminBtn">
+    <i class="fas fa-cog"></i>
+  </a>
+
+  <script>
+    // استخدام الإعدادات من config.js
+    const modalData = STORE_CONFIG.PRODUCTS;
+    const deliveryPrices = STORE_CONFIG.DELIVERY_PRICES;
+    let pieceCount = 0;
+    const ADMIN_PASSWORD = "12343210";
+    let currentProductKey = null;
+
+    // دالة لتحديث الواجهة بالإعدادات
+    function updateUIWithConfig() {
+      document.title = `🛒 ${STORE_CONFIG.STORE_INFO.name} 🎀${STORE_CONFIG.STORE_INFO.tagline}🎀`;
+      document.getElementById('modalStoreName').textContent = STORE_CONFIG.STORE_INFO.name;
+      document.getElementById('storeNameHeader').textContent = STORE_CONFIG.STORE_INFO.name;
+      
+      const infoBar = document.getElementById('infoBarContent');
+      if (infoBar) {
+        const phones = STORE_CONFIG.STORE_INFO.phoneNumbers || ["0671466489", "0551102155"];
+        infoBar.innerHTML = phones.map(phone => 
+          `<i class="fas fa-phone-alt"></i> للاستفسار أطلب ${phone} `
+        ).join('').repeat(3);
+      }
+    }
+
+    // دالة لتهيئة معرض الموديلات
+    function initModelsGallery() {
+      const grid = document.getElementById('modelsGrid');
+      grid.innerHTML = '';
+      
+      Object.keys(STORE_CONFIG.PRODUCTS).forEach((key, index) => {
+        const product = STORE_CONFIG.PRODUCTS[key];
+        const card = document.createElement('div');
+        card.className = 'model-card';
+        card.innerHTML = `
+          <div class="model-badge">${index === 0 ? 'الأكثر مبيعاً' : 'جديد'}</div>
+          <img src="${product.image}" alt="${product.name}" class="model-image">
+          <div class="model-info">
+            <h3 class="model-name">${product.name}</h3>
+            <p class="model-description">${product.description}</p>
+            <div class="model-price">
+              <i class="fas fa-tag"></i>
+              ${product.price} دج
+            </div>
+            <div class="model-features">
+              <span class="feature-tag">${product.availableSizes ? product.availableSizes[0] : 'جميع المقاسات'}</span>
+              <span class="feature-tag">${product.availableColors ? product.availableColors[0] : 'متعدد الألوان'}</span>
+            </div>
+          </div>
+          <button class="quick-add-btn" onclick="quickAddToCart('${key}')">
+            <i class="fas fa-cart-plus"></i>
+          </button>
+        `;
+        
+        // إضافة حدث النقر لفتح تفاصيل المنتج
+        card.addEventListener('click', (e) => {
+          if (!e.target.closest('.quick-add-btn')) {
+            showProductDetails(key);
+          }
+        });
+        
+        grid.appendChild(card);
+      });
+    }
+
+    // دالة للإضافة السريعة للسلة
+    function quickAddToCart(productKey) {
+      event.stopPropagation();
+      
+      // إضافة قطعة جديدة
+      addPiece();
+      
+      // تعيين المنتج المختار
+      const lastPieceIndex = document.querySelectorAll('.piece').length;
+      const modalSelect = document.querySelector(`[name="modal${lastPieceIndex}"]`);
+      if (modalSelect) {
+        modalSelect.value = productKey;
+        updatePieceSelections(modalSelect, lastPieceIndex);
+      }
+      
+      // التمرير إلى نموذج الطلب
+      document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+      
+      // تحديث السعر
+      updatePrice();
+    }
+
+    // دالة لعرض تفاصيل المنتج
+    function showProductDetails(productKey) {
+      const product = STORE_CONFIG.PRODUCTS[productKey];
+      currentProductKey = productKey;
+      
+      // تعبئة بيانات المنتج في النافذة المنبثقة
+      document.getElementById('productModalImage').src = product.image;
+      document.getElementById('productModalTitle').textContent = product.name;
+      document.getElementById('productModalDescription').textContent = product.description;
+      document.getElementById('productModalPriceValue').textContent = `${product.price} دج`;
+      
+      // إعادة تعيين الكمية
+      document.getElementById('quantityDisplay').textContent = '1';
+      
+      // إظهار النافذة المنبثقة
+      document.getElementById('productModal').classList.add('show');
+    }
+
+    // دالة لإغلاق نافذة تفاصيل المنتج
+    function closeProductModal() {
+      document.getElementById('productModal').classList.remove('show');
+      currentProductKey = null;
+    }
+
+    // دالة لإضافة المنتج إلى السلة من النافذة المنبثقة
+    function addToCartFromModal() {
+      if (!currentProductKey) return;
+      
+      const quantity = parseInt(document.getElementById('quantityDisplay').textContent);
+      
+      // إضافة قطعة جديدة
+      addPiece();
+      
+      // تعيين المنتج المختار والكمية
+      const lastPieceIndex = document.querySelectorAll('.piece').length;
+      const modalSelect = document.querySelector(`[name="modal${lastPieceIndex}"]`);
+      const quantitySelect = document.querySelector(`[name="quantity${lastPieceIndex}"]`);
+      
+      if (modalSelect && quantitySelect) {
+        modalSelect.value = productKey;
+        quantitySelect.value = quantity;
+        updatePieceSelections(modalSelect, lastPieceIndex);
+      }
+      
+      // إغلاق النافذة المنبثقة
+      closeProductModal();
+      
+      // التمرير إلى نموذج الطلب
+      document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+      
+      // تحديث السعر
+      updatePrice();
+    }
+
+    // دالة رئيسية لتحديث المتجر
+    async function updateStoreDisplay() {
+      try {
+        const success = await loadRemoteConfig();
+        
+        if (success) {
+          console.log('✅ تم تحديث الإعدادات من الخادم');
+        } else {
+          console.log('⚠️ استخدام الإعدادات المحلية');
+        }
+        
+        // التحقق من روابط الصور بعد التحميل
+        if (validateGithubConfig()) {
+          console.log('⚠️ تم اكتشاف صور من مستودع مختلف');
+        }
+        
+        updateUIWithConfig();
+        initModelsGallery();
+        
+        if (typeof initSlider === 'function') {
+          initSlider();
+        }
+        
+        if (typeof updatePrice === 'function') {
+          updatePrice();
+        }
+        
+      } catch (error) {
+        console.error('❌ خطأ في تحديث الواجهة:', error);
+        updateUIWithConfig();
+        initModelsGallery();
+      }
+    }
+
+    // بقية الدوال الأصلية تبقى كما هي
+    function getSize(age) {
+      return STORE_CONFIG.AGE_SIZES[age] || "غير متوفر";
+    }
+
+    function initSlider() {
+      const slidesContainer = document.getElementById('slidesContainer');
+      const sliderNav = document.getElementById('sliderNav');
+      
+      slidesContainer.innerHTML = '';
+      sliderNav.innerHTML = '';
+      
+      Object.keys(STORE_CONFIG.PRODUCTS).forEach((key, index) => {
+        const product = STORE_CONFIG.PRODUCTS[key];
+        const slide = document.createElement('div');
+        slide.className = `slide ${index === 0 ? 'active' : ''}`;
+        slide.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="slide-image">
+          <div class="slide-content">
+            <h3 class="slide-title">${product.name}</h3>
+            <p class="slide-description">${product.description}</p>
+            <div class="modal-price"><i class="fas fa-tag"></i> السعر: ${product.price} دج</div>
+          </div>
+        `;
+        slidesContainer.appendChild(slide);
+        
+        const dot = document.createElement('div');
+        dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+        dot.setAttribute('data-slide', index);
+        sliderNav.appendChild(dot);
+      });
+      
+      const dots = document.querySelectorAll('.slider-dot');
+      const prevBtn = document.getElementById('prevSlide');
+      const nextBtn = document.getElementById('nextSlide');
+      let currentSlide = 0;
+      let slideInterval;
+      const totalSlides = Object.keys(STORE_CONFIG.PRODUCTS).length;
+      
+      function startSlideShow() {
+        slideInterval = setInterval(() => {
+          nextSlide();
+        }, 5000);
+      }
+      
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider(currentSlide);
+      }
+      
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider(currentSlide);
+      }
+      
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          clearInterval(slideInterval);
+          updateSlider(index);
+          startSlideShow();
+        });
+      });
+      
+      prevBtn.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        prevSlide();
+        startSlideShow();
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        nextSlide();
+        startSlideShow();
+      });
+      
+      function updateSlider(slideIndex) {
+        slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === slideIndex);
+        });
+        currentSlide = slideIndex;
+      }
+      
+      startSlideShow();
+      
+      const slider = document.querySelector('.slideshow-container');
+      slider.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+      });
+      
+      slider.addEventListener('mouseleave', () => {
+        startSlideShow();
+      });
+    }
+
+    function initWilayaSelect() {
+      const wilayaSelect = document.getElementById('wilaya');
+      wilayaSelect.innerHTML = '<option value="">-- اختر الولاية --</option>';
+      
+      Object.keys(STORE_CONFIG.DELIVERY_PRICES).forEach(wilaya => {
+        const option = document.createElement('option');
+        option.value = wilaya;
+        option.textContent = wilaya;
+        wilayaSelect.appendChild(option);
+      });
+    }
+
+    function initEvents() {
+      document.getElementById('wilaya').addEventListener('change', updatePrice);
+      document.getElementById('deliveryType').addEventListener('change', updatePrice);
+      document.getElementById('nextToStep2').addEventListener('click', goToStep2);
+      document.getElementById('backToStep1').addEventListener('click', goToStep1);
+      document.getElementById('nextToStep3').addEventListener('click', goToStep3);
+      document.getElementById('backToStep2').addEventListener('click', goToStep2);
+      document.getElementById('addPieceBtn').addEventListener('click', addPiece);
+      document.getElementById('orderForm').addEventListener('submit', submitOrder);
+      document.getElementById('clearSavedData').addEventListener('click', clearUserData);
+      document.getElementById('adminBtn').addEventListener('click', showPasswordModal);
+      
+      // أحداث نافذة تفاصيل المنتج
+      document.getElementById('decreaseQuantity').addEventListener('click', () => {
+        const quantityDisplay = document.getElementById('quantityDisplay');
+        let quantity = parseInt(quantityDisplay.textContent);
+        if (quantity > 1) {
+          quantityDisplay.textContent = quantity - 1;
+        }
+      });
+      
+      document.getElementById('increaseQuantity').addEventListener('click', () => {
+        const quantityDisplay = document.getElementById('quantityDisplay');
+        let quantity = parseInt(quantityDisplay.textContent);
+        if (quantity < 10) {
+          quantityDisplay.textContent = quantity + 1;
+        }
+      });
+      
+      document.getElementById('addToCartFromModal').addEventListener('click', addToCartFromModal);
+      
+      // إغلاق النافذة المنبثقة عند النقر خارجها
+      document.getElementById('productModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeProductModal();
+        }
+      });
+    }
+
+    function saveUserData() {
+      const userData = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        daire: document.getElementById('daire').value,
+        address: document.getElementById('address').value,
+        wilaya: document.getElementById('wilaya').value,
+        deliveryType: document.getElementById('deliveryType').value,
+        savedAt: new Date().getTime()
+      };
+      localStorage.setItem('benKrabUserData', JSON.stringify(userData));
+    }
+
+    function loadUserData() {
+      const savedData = localStorage.getItem('benKrabUserData');
+      if (savedData) {
+        const userData = JSON.parse(savedData);
+        if (userData.name) document.getElementById('name').value = userData.name;
+        if (userData.phone) document.getElementById('phone').value = userData.phone;
+        if (userData.daire) document.getElementById('daire').value = userData.daire;
+        if (userData.address) document.getElementById('address').value = userData.address;
+        if (userData.wilaya) document.getElementById('wilaya').value = userData.wilaya;
+        if (userData.deliveryType) document.getElementById('deliveryType').value = userData.deliveryType;
+        updatePrice();
+      }
+    }
+
+    function clearUserData() {
+      localStorage.removeItem('benKrabUserData');
+      document.getElementById('name').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('daire').value = '';
+      document.getElementById('address').value = '';
+      document.getElementById('wilaya').value = '';
+      document.getElementById('deliveryType').value = 'home';
+      updatePrice();
+      alert('تم مسح البيانات المحفوظة بنجاح');
+    }
+
+    function setupAutoSave() {
+      const fieldsToSave = ['name', 'phone', 'daire', 'address', 'wilaya', 'deliveryType'];
+      fieldsToSave.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.addEventListener('input', function() {
+            clearTimeout(window.autoSaveTimeout);
+            window.autoSaveTimeout = setTimeout(saveUserData, 1000);
+          });
+          field.addEventListener('change', saveUserData);
+        }
+      });
+    }
+
+    function addPiece() {
+      pieceCount++;
+      const pieceElement = document.createElement('div');
+      pieceElement.className = 'piece';
+      pieceElement.innerHTML = `
+        <div class="piece-header">
+          <div class="piece-number">${pieceCount}</div>
+          <button type="button" class="remove-piece" onclick="removePiece(this)"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="piece-grid">
+          <div class="form-group">
+            <label><i class="fas fa-tshirt"></i> اختر المودال</label>
+            <select name="modal${pieceCount}" onchange="updatePieceSelections(this, ${pieceCount})" required>
+              <option value="">-- اختر --</option>
+              ${Object.keys(STORE_CONFIG.PRODUCTS).map(key => 
+                `<option value="${key}">${STORE_CONFIG.PRODUCTS[key].name}</option>`
+              ).join('')}
+            </select>
+          </div>
+          <div class="piece-image-container" id="pieceImage${pieceCount}"></div>
+          <div class="form-group">
+            <label><i class="fas fa-cubes"></i> الكمية</label>
+            <select name="quantity${pieceCount}" onchange="updatePrice()" required>
+              ${Array.from({length: 10}, (_, i) => `<option value="${i+1}">${i+1}</option>`).join('')}
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-palette"></i> اللون</label>
+            <select name="color${pieceCount}" required>
+              <option value="">-- اختر اللون --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-child"></i> عمر الطفل</label>
+            <select name="age${pieceCount}" onchange="updatePieceSize(this, ${pieceCount})" required>
+              <option value="">-- اختر العمر --</option>
+              ${Object.keys(STORE_CONFIG.AGE_SIZES).map(age => 
+                `<option value="${age}">${age} سنوات</option>`
+              ).join('')}
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-ruler"></i> القياس</label>
+            <input type="text" name="size${pieceCount}" id="size${pieceCount}" readonly placeholder="سيظهر القياس تلقائياً بعد اختيار العمر">
+          </div>
+        </div>
+      `;
+      document.getElementById('piecesContainer').appendChild(pieceElement);
+      updatePrice();
+      const addButton = document.getElementById('addPieceBtn');
+      if (pieceCount === 1) {
+        addButton.innerHTML = '<i class="fas fa-plus"></i> أضف مودال آخر';
+      }
+      updateProgressBar();
+    }
+
+    function removePiece(button) {
+      const pieceElement = button.closest('.piece');
+      pieceElement.style.animation = 'fadeOut 0.3s ease';
+      setTimeout(() => {
+        pieceElement.remove();
+        pieceCount--;
+        const addButton = document.getElementById('addPieceBtn');
+        if (pieceCount === 0) {
+          addButton.innerHTML = '<i class="fas fa-plus"></i> إختر مودال طفلك';
+        }
+        const pieces = document.querySelectorAll('.piece');
+        pieces.forEach((piece, index) => {
+          piece.querySelector('.piece-number').textContent = index + 1;
+        });
+        updatePrice();
+        updateProgressBar();
+      }, 300);
+    }
+
+    function updatePieceSelections(select, pieceId) {
+      updatePieceImage(select, pieceId);
+      updatePieceSizeOptions(select, pieceId);
+    }
+
+    function updatePieceSizeOptions(select, pieceId) {
+      const modalId = select.value;
+      const ageSelect = document.querySelector(`[name="age${pieceId}"]`);
+      
+      if (modalId && STORE_CONFIG.PRODUCTS[modalId]) {
+        const product = STORE_CONFIG.PRODUCTS[modalId];
+        const availableSizes = product.availableSizes || STORE_CONFIG.AVAILABLE_SIZES;
+        
+        ageSelect.innerHTML = '<option value="">-- اختر العمر --</option>';
+        Object.keys(STORE_CONFIG.AGE_SIZES).forEach(age => {
+          const sizeForAge = STORE_CONFIG.AGE_SIZES[age];
+          if (availableSizes.includes(sizeForAge)) {
+            ageSelect.innerHTML += `<option value="${age}">${age} سنوات (${sizeForAge})</option>`;
+          }
+        });
+      } else {
+        ageSelect.innerHTML = '<option value="">-- اختر العمر --</option>';
+        Object.keys(STORE_CONFIG.AGE_SIZES).forEach(age => {
+          ageSelect.innerHTML += `<option value="${age}">${age} سنوات</option>`;
+        });
+      }
+    }
+
+    function updatePieceImage(select, pieceId) {
+      const modalId = select.value;
+      const imageContainer = document.getElementById(`pieceImage${pieceId}`);
+      const colorSelect = document.querySelector(`[name="color${pieceId}"]`);
+      
+      if (modalId && STORE_CONFIG.PRODUCTS[modalId]) {
+        const product = STORE_CONFIG.PRODUCTS[modalId];
+        imageContainer.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">${product.description}</p>
+          <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--primary);">
+            <i class="fas fa-ruler"></i> القياسات المتاحة: ${(product.availableSizes || STORE_CONFIG.AVAILABLE_SIZES).join(', ')}
+          </p>
+        `;
+        
+        colorSelect.innerHTML = '<option value="">-- اختر اللون --</option>';
+        const availableColors = product.availableColors || STORE_CONFIG.AVAILABLE_COLORS;
+        availableColors.forEach(color => {
+          colorSelect.innerHTML += `<option value="${color}">${color}</option>`;
+        });
+      } else {
+        imageContainer.innerHTML = '';
+        colorSelect.innerHTML = '<option value="">-- اختر اللون --</option>';
+      }
+      updatePrice();
+    }
+
+    function updatePieceSize(select, pieceId) {
+      const age = parseInt(select.value);
+      document.getElementById(`size${pieceId}`).value = getSize(age);
+    }
+
+    function updatePrice() {
+      let totalPieces = 0;
+      let subtotal = 0;
+      for (let i = 1; i <= pieceCount; i++) {
+        const quantitySelect = document.querySelector(`[name="quantity${i}"]`);
+        if (quantitySelect) {
+          const quantity = parseInt(quantitySelect.value) || 0;
+          totalPieces += quantity;
+        }
+      }
+      const basePrice = 3300;
+      const unitPrice = totalPieces >= STORE_CONFIG.DISCOUNTS.minQuantityForDiscount ? 
+        (basePrice - STORE_CONFIG.DISCOUNTS.discountPerItem) : basePrice;
+      const discount = totalPieces >= STORE_CONFIG.DISCOUNTS.minQuantityForDiscount ? 
+        STORE_CONFIG.DISCOUNTS.discountPerItem : 0;
+      subtotal = totalPieces * unitPrice;
+      const wilaya = document.getElementById('wilaya').value;
+      const deliveryType = document.getElementById('deliveryType').value;
+      const deliveryCost = STORE_CONFIG.DELIVERY_PRICES[wilaya] ? STORE_CONFIG.DELIVERY_PRICES[wilaya][deliveryType] : 0;
+      const total = subtotal + deliveryCost;
+      document.getElementById('unitPrice').textContent = `${unitPrice} دج`;
+      document.getElementById('piecesCount').textContent = totalPieces;
+      document.getElementById('subtotal').textContent = `${subtotal} دج`;
+      document.getElementById('deliveryCost').textContent = `${deliveryCost} دج`;
+      document.getElementById('totalPrice').textContent = `${total} دج`;
+      const discountInfo = document.getElementById('discountInfo');
+      if (totalPieces >= STORE_CONFIG.DISCOUNTS.minQuantityForDiscount) {
+        discountInfo.style.display = 'flex';
+        document.getElementById('discountAmount').textContent = `-${discount * totalPieces} دج`;
+      } else {
+        discountInfo.style.display = 'none';
+      }
+      document.getElementById('cartItemsCount').textContent = `${totalPieces} عناصر`;
+      document.getElementById('cartTotalPrice').textContent = `${total} دج`;
+      document.getElementById('cartBadge').textContent = totalPieces;
+      return { totalPieces, unitPrice, subtotal, deliveryCost, total, discount: totalPieces >= STORE_CONFIG.DISCOUNTS.minQuantityForDiscount ? discount * totalPieces : 0 };
+    }
+
+    function updateProgressBar() {
+      const progressSteps = document.querySelectorAll('.progress-step');
+      const progressBar = document.querySelector('.progress-bar');
+      let activeStep = 1;
+      if (pieceCount > 0) activeStep = 2;
+      progressSteps.forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        if (stepNum < activeStep) {
+          step.classList.add('completed');
+          step.classList.remove('active');
+        } else if (stepNum === activeStep) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else {
+          step.classList.remove('active', 'completed');
+        }
+      });
+      const progressPercent = ((activeStep - 1) / 2) * 100;
+      progressBar.style.setProperty('--progress-width', `${progressPercent}%`);
+    }
+
+    function goToStep2() {
+      if (pieceCount === 0) {
+        alert('الرجاء إضافة قطعة واحدة على الأقل قبل المتابعة');
+        return;
+      }
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'block';
+      document.getElementById('step3').style.display = 'none';
+      document.querySelectorAll('.progress-step').forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        if (stepNum < 2) {
+          step.classList.add('completed');
+          step.classList.remove('active');
+        } else if (stepNum === 2) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else {
+          step.classList.remove('active', 'completed');
+        }
+      });
+    }
+    
+    function goToStep1() {
+      document.getElementById('step1').style.display = 'block';
+      document.getElementById('step2').style.display = 'none';
+      document.getElementById('step3').style.display = 'none';
+      document.querySelectorAll('.progress-step').forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        if (stepNum === 1) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else {
+          step.classList.remove('active', 'completed');
+        }
+      });
+    }
+    
+    function goToStep3() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const daire = document.getElementById('daire').value;
+      const address = document.getElementById('address').value;
+      if (!name || !phone || !daire || !address) {
+        alert('الرجاء ملء جميع الحقول المطلوبة');
+        return;
+      }
+      if (!/^[0-9]{10}$/.test(phone)) {
+        alert('الرجاء إدخال رقم هاتف صحيح مكون من 10 أرقام');
+        return;
+      }
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'none';
+      document.getElementById('step3').style.display = 'block';
+      document.querySelectorAll('.progress-step').forEach(step => {
+        step.classList.add('completed');
+        if (step.getAttribute('data-step') === '3') {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+      updateOrderSummary();
+    }
+
+    function updateOrderSummary() {
+      const orderSummary = document.getElementById('orderSummary');
+      const modalOrderSummary = document.getElementById('modalOrderSummary');
+      const priceDetails = updatePrice();
+      let summaryHTML = '';
+      summaryHTML += `
+        <div class="summary-item">
+          <span><i class="fas fa-user"></i> الاسم:</span>
+          <span>${document.getElementById('name').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-phone"></i> الهاتف:</span>
+          <span>${document.getElementById('phone').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-map"></i> الدائرة:</span>
+          <span>${document.getElementById('daire').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-home"></i> العنوان:</span>
+          <span>${document.getElementById('address').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-map-marker-alt"></i> الولاية:</span>
+          <span>${document.getElementById('wilaya').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-truck"></i> نوع التوصيل:</span>
+          <span>${document.getElementById('deliveryType').value === 'home' ? 'إلى المنزل' : 'إلى المكتب'}</span>
+        </div>
+        <hr style="margin: 1rem 0; border: none; border-top: 1px solid #cbd5e1;">
+      `;
+      for (let i = 1; i <= pieceCount; i++) {
+        const modalSelect = document.querySelector(`[name="modal${i}"]`);
+        const quantitySelect = document.querySelector(`[name="quantity${i}"]`);
+        const colorSelect = document.querySelector(`[name="color${i}"]`);
+        const ageSelect = document.querySelector(`[name="age${i}"]`);
+        const sizeInput = document.getElementById(`size${i}`);
+        if (modalSelect && modalSelect.value) {
+          summaryHTML += `
+            <div class="summary-item">
+              <span><i class="fas fa-tshirt"></i> القطعة ${i}:</span>
+              <span>${STORE_CONFIG.PRODUCTS[modalSelect.value].name} (${quantitySelect.value} × ${STORE_CONFIG.PRODUCTS[modalSelect.value].price} دج)</span>
+            </div>
+            <div class="summary-item" style="font-size: 0.9rem; color: var(--gray);">
+              <span>اللون/القياس:</span>
+              <span>${colorSelect.value} / ${sizeInput.value}</span>
+            </div>
+          `;
+        }
+      }
+      summaryHTML += `
+        <hr style="margin: 1rem 0; border: none; border-top: 1px solid #cbd5e1;">
+        <div class="summary-item">
+          <span>المجموع الجزئي:</span>
+          <span>${priceDetails.subtotal} دج</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-truck"></i> تكلفة التوصيل:</span>
+          <span>${priceDetails.deliveryCost} دج</span>
+        </div>
+      `;
+      if (priceDetails.discount > 0) {
+        summaryHTML += `
+          <div class="summary-item">
+            <span>خصم الكمية:</span>
+            <span style="color: var(--success);">-${priceDetails.discount} دج</span>
+          </div>
+        `;
+      }
+      summaryHTML += `
+        <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--primary);">
+        <div class="summary-item" style="font-weight: bold; font-size: 1.1rem;">
+          <span>المجموع الكلي:</span>
+          <span>${priceDetails.total} دج</span>
+        </div>
+      `;
+      orderSummary.innerHTML = summaryHTML;
+      modalOrderSummary.innerHTML = summaryHTML;
+    }
+
+    function submitOrder(e) {
+      e.preventDefault();
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxw49YndhJCAIsGPz2n2kfik87DpmK601QM_K-glxvmxy8gEem8QZtq99MkEhhvy8P8/exec";
+      
+      const loadingEl = document.getElementById('loading');
+      loadingEl.style.display = 'block';
+      loadingEl.classList.add('fixed-loading');
+      document.getElementById('submitOrder').disabled = true;
+      const formData = new FormData(document.getElementById('orderForm'));
+      const priceDetails = updatePrice();
+      formData.append('total', priceDetails.total);
+      formData.append('deliveryCost', priceDetails.deliveryCost);
+      formData.append('timestamp', new Date().toLocaleString('fr-FR'));
+      saveUserData();
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(data => {
+        loadingEl.style.display = 'none';
+        loadingEl.classList.remove('fixed-loading');
+        document.getElementById('submitOrder').disabled = false;
+        document.getElementById('successModal').classList.add('show');
+        setTimeout(() => {
+          resetForm();
+        }, 3000);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        loadingEl.style.display = 'none';
+        loadingEl.classList.remove('fixed-loading');
+        document.getElementById('submitOrder').disabled = false;
+        alert('حدث خطأ أثناء إرسال الطلب. الرجاء المحاولة مرة أخرى.');
+      });
+    }
+
+    function resetForm() {
+      document.getElementById('piecesContainer').innerHTML = '';
+      pieceCount = 0;
+      const addButton = document.getElementById('addPieceBtn');
+      addButton.innerHTML = '<i class="fas fa-plus"></i> إختر مودال طفلك';
+      document.getElementById('wilaya').value = '';
+      document.getElementById('deliveryType').value = 'home';
+      goToStep1();
+      updatePrice();
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').classList.remove('show');
+    }
+
+    function showPasswordModal(e) {
+      e.preventDefault();
+      document.getElementById('passwordModal').classList.add('show');
+      document.getElementById('adminPassword').focus();
+    }
+
+    function closePasswordModal() {
+      document.getElementById('passwordModal').classList.remove('show');
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('passwordError').style.display = 'none';
+    }
+
+    function checkPassword() {
+      const password = document.getElementById('adminPassword').value;
+      if (password === ADMIN_PASSWORD) {
+        window.location.href = 'admin.html';
+      } else {
+        document.getElementById('passwordError').style.display = 'block';
+        document.getElementById('adminPassword').value = '';
+        document.getElementById('adminPassword').focus();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async function() {
+      console.log('🚀 بدء تحميل المتجر...');
+      
+      await updateStoreDisplay();
+      initWilayaSelect();
+      initEvents();
+      loadUserData();
+      setupAutoSave();
+      updatePrice();
+
+      window.addEventListener('scroll', function() {
+        const header = document.getElementById('mainHeader');
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+      document.getElementById('successModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeModal();
+        }
+      });
+
+      document.getElementById('passwordModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closePasswordModal();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('successModal').classList.contains('show')) {
+          closeModal();
+        }
+        if (e.key === 'Escape' && document.getElementById('passwordModal').classList.contains('show')) {
+          closePasswordModal();
+        }
+        if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('show')) {
+          closeProductModal();
+        }
+        if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('show')) {
+          checkPassword();
+        }
+      });
+
+      const infoBar = document.getElementById('infoBar');
+      let pauseTimeout;
+      infoBar.addEventListener('click', function() {
+        infoBar.classList.add('paused');
+        if (pauseTimeout) {
+          clearTimeout(pauseTimeout);
+        }
+        pauseTimeout = setTimeout(function() {
+          infoBar.classList.remove('paused');
+        }, 5000);
+      });
+    });
+
+    // تصدير الدوال للاستخدام العام
+    window.removePiece = removePiece;
+    window.updatePieceSelections = updatePieceSelections;
+    window.updatePieceImage = updatePieceImage;
+    window.updatePieceSizeOptions = updatePieceSizeOptions;
+    window.updatePieceSize = updatePieceSize;
+    window.updatePrice = updatePrice;
+    window.goToStep2 = goToStep2;
+    window.goToStep1 = goToStep1;
+    window.goToStep3 = goToStep3;
+    window.closeModal = closeModal;
+    window.clearUserData = clearUserData;
+    window.addPiece = addPiece;
+    window.showPasswordModal = showPasswordModal;
+    window.closePasswordModal = closePasswordModal;
+    window.checkPassword = checkPassword;
+    window.quickAddToCart = quickAddToCart;
+    window.showProductDetails = showProductDetails;
+    window.closeProductModal = closeProductModal;
+    window.addToCartFromModal = addToCartFromModal;
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeOut {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(20px); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
