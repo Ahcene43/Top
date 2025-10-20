@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المتجر - النسخة المحسنة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- إضافة ملف الإعدادات -->
+    <script src="config.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #FF6B8B;
+            --primary-dark: #E05575;
+            --success-color: #06D6A0;
+            --danger-color: #ff4757;
+            --secondary-color: #4ECDC4;
+            --warning-color: #FFD166;
+            --dark-color: #2D3047;
+            --light-color: #f5f7fa;
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Cairo", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            padding: 20px;
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .password-protection {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .password-protection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        }
+        
+        .password-protection h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .password-protection p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .password-input {
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .password-input input {
+            width: 100%;
+            padding: 15px 45px 15px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: right;
+            transition: var(--transition);
+        }
+        
+        .password-input input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.2);
+        }
+        
+        .password-input i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
+        }
+        
+        .password-error {
+            color: var(--danger-color);
+            margin-top: 10px;
+            display: none;
+            font-size: 14px;
+            padding: 10px;
+            background-color: rgba(255, 71, 87, 0.1);
+            border-radius: 8px;
+        }
+        
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 107, 139, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .section:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.2);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color), #05b88c);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger-color), #ff3838);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary-color), #3BB4AC);
+            color: white;
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning-color), #FFC145);
+            color: var(--dark-color);
+        }
+        
+        .product-item {
+            border: 2px dashed var(--primary-color);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: var(--transition);
+        }
+        
+        .product-item:hover {
+            border-color: var(--primary-dark);
+            background: white;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .tab:hover {
+            background: #e9ecef;
+        }
+        
+        .tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .small-btn {
+            padding: 8px 15px;
+            font-size: 14px;
+            width: auto;
+            margin: 2px;
+        }
+        
+        .image-upload-container {
+            position: relative;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .upload-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #3BB4AC);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(78, 205, 196, 0.3);
+        }
+        
+        .upload-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+        
+        .upload-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .upload-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .github-config {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px dashed #ddd;
+        }
+        
+        .size-color-config {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .size-color-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .sync-status {
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+        }
+        
+        .sync-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .sync-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .token-management {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px dashed var(--secondary-color);
+        }
+        
+        .token-list {
+            margin-top: 15px;
+        }
+        
+        .token-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .token-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .stat-card h4 {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: var(--success-color);
+        }
+        
+        .notification.error {
+            background: var(--danger-color);
+        }
+        
+        .notification.warning {
+            background: var(--warning-color);
+            color: var(--dark-color);
+        }
+        
+        .upload-config {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .sync-config {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .products-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .page-btn {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .page-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .page-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .password-management {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px dashed var(--warning-color);
+        }
+        
+        .store-selector {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .size-color-config {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .upload-config {
+                grid-template-columns: 1fr;
+            }
+            
+            .sync-config {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- حماية كلمة المرور -->
+    <div id="passwordProtection" class="password-protection">
+        <h2><i class="fas fa-lock"></i> دخول المدير</h2>
+        <p>الرجاء إدخال كلمة المرور للوصول إلى لوحة التحكم</p>
+        
+        <div class="password-input">
+            <input type="password" id="adminPassword" placeholder="أدخل كلمة المرور" autocomplete="off">
+            <i class="fas fa-key"></i>
+        </div>
+        
+        <div class="password-error" id="passwordError">
+            <i class="fas fa-exclamation-circle"></i> كلمة المرور غير صحيحة! الرجاء المحاولة مرة أخرى.
+        </div>
+        
+        <button class="btn btn-primary" onclick="checkAdminPassword()">
+            <i class="fas fa-sign-in-alt"></i> دخول
+        </button>
+        
+        <p style="margin-top: 20px; color: var(--text-light); font-size: 12px;">
+            كلمة المرور الافتراضية: <strong>1234321</strong>
+        </p>
+    </div>
+
+    <!-- لوحة التحكم الرئيسية -->
+    <div id="adminPanel" class="admin-container">
+        <!-- اختيار المتجر -->
+        <div class="store-selector">
+            <h3><i class="fas fa-store"></i> اختيار المتجر</h3>
+            <div class="form-group">
+                <label>اختر المتجر الحالي:</label>
+                <select id="storeSelector" onchange="switchStore()">
+                    <option value="">-- اختر المتجر --</option>
+                </select>
+            </div>
+            <button class="btn btn-secondary" onclick="addNewStore()">
+                <i class="fas fa-plus"></i> إضافة متجر جديد
+            </button>
+        </div>
+
+        <div class="header">
+            <h1><i class="fas fa-cogs"></i> لوحة تحكم المتجر - <span id="currentStoreName">غير محدد</span></h1>
+            <p>إدارة جميع إعدادات المتجر من مكان واحد</p>
+            <div id="syncStatus" class="sync-status"></div>
+        </div>
+
+        <!-- إحصائيات سريعة -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <h4>عدد المنتجات</h4>
+                <div class="value" id="productsCount">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>الولايات المفعّلة</h4>
+                <div class="value" id="wilayasCount">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>حالة التوكن</h4>
+                <div class="value" id="tokenStatus">غير مضبوط</div>
+            </div>
+            <div class="stat-card">
+                <h4>آخر تحديث</h4>
+                <div class="value" id="lastUpdate">-</div>
+            </div>
+        </div>
+
+        <!-- ألسنة التبويب -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('products')">
+                <i class="fas fa-box"></i> المنتجات
+            </button>
+            <button class="tab" onclick="switchTab('delivery')">
+                <i class="fas fa-truck"></i> التوصيل
+            </button>
+            <button class="tab" onclick="switchTab('settings')">
+                <i class="fas fa-cog"></i> الإعدادات
+            </button>
+            <button class="tab" onclick="switchTab('upload')">
+                <i class="fas fa-cloud-upload-alt"></i> رفع الصور
+            </button>
+            <button class="tab" onclick="switchTab('github')">
+                <i class="fab fa-github"></i> GitHub
+            </button>
+            <button class="tab" onclick="switchTab('security')">
+                <i class="fas fa-shield-alt"></i> الأمان
+            </button>
+        </div>
+
+        <!-- قسم المنتجات -->
+        <div id="products" class="tab-content active">
+            <div class="section">
+                <h3><i class="fas fa-boxes"></i> إدارة المنتجات</h3>
+                
+                <div class="products-pagination" id="productsPagination">
+                    <!-- سيتم ملؤها بأزرار الصفحات -->
+                </div>
+                
+                <div id="productsList">
+                    <!-- سيتم ملؤها بالمنتجات -->
+                </div>
+                
+                <div class="products-pagination" id="productsPaginationBottom">
+                    <!-- سيتم ملؤها بأزرار الصفحات -->
+                </div>
+                
+                <button class="btn btn-secondary" onclick="addNewProduct()">
+                    <i class="fas fa-plus"></i> إضافة منتج جديد
+                </button>
+            </div>
+        </div>
+
+        <!-- قسم التوصيل -->
+        <div id="delivery" class="tab-content">
+            <div class="section">
+                <h3><i class="fas fa-map-marked-alt"></i> أسعار التوصيل</h3>
+                <div class="form-group">
+                    <label>اختر الولاية:</label>
+                    <select id="wilayaSelect" onchange="loadWilayaPrice()">
+                        <option value="">-- اختر الولاية --</option>
+                    </select>
+                </div>
+                <div id="wilayaPriceForm" class="hidden">
+                    <div class="form-group">
+                        <label>سعر التوصيل للمنزل:</label>
+                        <input type="number" id="homePrice" placeholder="السعر">
+                    </div>
+                    <div class="form-group">
+                        <label>سعر التوصيل للمكتب:</label>
+                        <input type="number" id="deskPrice" placeholder="السعر">
+                    </div>
+                    <button class="btn btn-primary" onclick="saveWilayaPrice()">
+                        <i class="fas fa-save"></i> حفظ السعر
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الإعدادات -->
+        <div id="settings" class="tab-content">
+            <div class="section">
+                <h3><i class="fas fa-tag"></i> إعدادات الخصم</h3>
+                <div class="form-group">
+                    <label>الحد الأدنى للكمية للخصم:</label>
+                    <input type="number" id="minQuantity" min="2" value="2">
+                </div>
+                <div class="form-group">
+                    <label>قيمة الخصم لكل قطعة (دج):</label>
+                    <input type="number" id="discountValue" value="300">
+                </div>
+                <button class="btn btn-primary" onclick="saveDiscountSettings()">
+                    <i class="fas fa-save"></i> حفظ الخصم
+                </button>
+            </div>
+
+            <div class="section">
+                <h3><i class="fas fa-store"></i> معلومات المتجر</h3>
+                <div class="form-group">
+                    <label>اسم المتجر:</label>
+                    <input type="text" id="storeName" placeholder="اسم المتجر">
+                </div>
+                <div class="form-group">
+                    <label>شعار المتجر:</label>
+                    <input type="text" id="storeTagline" placeholder="شعار المتجر">
+                </div>
+                <div class="form-group">
+                    <label>أرقام الهاتف (مفصولة بفاصلة):</label>
+                    <input type="text" id="storePhones" placeholder="مثال: 0671466489, 0551102155">
+                </div>
+                <button class="btn btn-primary" onclick="saveStoreInfo()">
+                    <i class="fas fa-save"></i> حفظ المعلومات
+                </button>
+            </div>
+
+            <div class="section">
+                <h3><i class="fas fa-ruler"></i> القياسات المتاحة</h3>
+                <div class="form-group">
+                    <label>القياسات المتاحة (مفصولة بفاصلة):</label>
+                    <input type="text" id="availableSizes" placeholder="S, M, L, XL, XXL">
+                    <small style="color: var(--text-light);">افصل بين القياسات بفاصلة</small>
+                </div>
+                <button class="btn btn-primary" onclick="saveAvailableSizes()">
+                    <i class="fas fa-save"></i> حفظ القياسات
+                </button>
+            </div>
+
+            <div class="section">
+                <h3><i class="fas fa-palette"></i> الألوان المتاحة</h3>
+                <div class="form-group">
+                    <label>الألوان المتاحة (مفصولة بفاصلة):</label>
+                    <input type="text" id="availableColors" placeholder="أبيض, أسود, أحمر, أزرق">
+                    <small style="color: var(--text-light);">افصل بين الألوان بفاصلة</small>
+                </div>
+                <button class="btn btn-primary" onclick="saveAvailableColors()">
+                    <i class="fas fa-save"></i> حفظ الألوان
+                </button>
+            </div>
+
+            <div class="section">
+                <h3><i class="fas fa-child"></i> جدول الأعمار والقياسات</h3>
+                <div id="ageSizesList">
+                    <!-- سيتم ملؤها بجدول الأعمار والقياسات -->
+                </div>
+                <button class="btn btn-secondary" onclick="addNewAgeSize()">
+                    <i class="fas fa-plus"></i> إضافة عمر جديد
+                </button>
+            </div>
+        </div>
+
+        <!-- قسم رفع الصور -->
+        <div id="upload" class="tab-content">
+            <div class="section">
+                <h3><i class="fas fa-cloud-upload-alt"></i> رفع الصور إلى GitHub</h3>
+                
+                <div class="form-group">
+                    <label>مسار المجلد:</label>
+                    <input type="text" id="uploadFolderPath" placeholder="images" value="images">
+                    <small style="color: var(--text-light);">مسار المجلد داخل المستودع (مثال: images/products)</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>اختر صورة للرفع:</label>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageSelect(event)">
+                    <div class="upload-btn" onclick="document.getElementById('imageInput').click()">
+                        <i class="fas fa-cloud-upload-alt"></i> اختر صورة
+                    </div>
+                </div>
+                
+                <div class="image-upload-container">
+                    <img id="imagePreview" class="image-preview" alt="معاينة الصورة">
+                    <div id="uploadStatus" class="upload-status"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>رابط الصورة بعد الرفع:</label>
+                    <input type="text" id="imageUrl" readonly placeholder="سيظهر رابط الصورة هنا بعد الرفع">
+                    <button class="btn btn-secondary small-btn" onclick="copyImageUrl()" style="margin-top: 10px;">
+                        <i class="fas fa-copy"></i> نسخ الرابط
+                    </button>
+                </div>
+                
+                <button class="btn btn-primary" id="uploadButton" onclick="uploadImage()" disabled>
+                    <i class="fas fa-upload"></i> رفع الصورة إلى GitHub
+                </button>
+                
+                <div class="section" style="margin-top: 20px;">
+                    <h4><i class="fas fa-history"></i> آخر الصور المرفوعة</h4>
+                    <div id="recentUploads" style="max-height: 200px; overflow-y: auto;">
+                        <!-- سيتم ملؤها بآخر الصور المرفوعة -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم GitHub -->
+        <div id="github" class="tab-content">
+            <div class="section">
+                <h3><i class="fab fa-github"></i> إعدادات GitHub للمتجر الحالي</h3>
+                <div class="github-config">
+                    <div class="form-group">
+                        <label>توكن GitHub الشخصي:</label>
+                        <input type="password" id="githubToken" placeholder="أدخل توكن GitHub">
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 5px;">
+                            <p style="font-size: 12px; color: var(--text-light); margin: 5px 0;">
+                                <strong>كيفية الحصول على التوكن:</strong>
+                            </p>
+                            <ol style="font-size: 11px; color: var(--text-light); margin: 5px 0; padding-right: 15px;">
+                                <li>اذهب إلى GitHub → Settings → Developer settings</li>
+                                <li>اختر Personal access tokens → Tokens (classic)</li>
+                                <li>انقر على Generate new token → Generate new token (classic)</li>
+                                <li>أعطِ اسم مثل "BEN&KRAB-Shopp"</li>
+                                <li>اختر "No expiration" للمدة</li>
+                                <li>اختر scope <strong>repo</strong> (كامل التحكم بالمستودعات)</li>
+                                <li>انسخ التوكن والصقه هنا</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>اسم المستخدم على GitHub:</label>
+                        <input type="text" id="githubUsername" placeholder="ahcene43">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>اسم المستودع:</label>
+                        <input type="text" id="githubRepo" placeholder="WAW">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>الفرع (Branch):</label>
+                        <input type="text" id="githubBranch" placeholder="main" value="main">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>المجلد الافتراضي للصور:</label>
+                        <input type="text" id="githubDefaultFolder" placeholder="images" value="images">
+                    </div>
+                    
+                    <button class="btn btn-secondary" onclick="saveGithubConfig()">
+                        <i class="fas fa-save"></i> حفظ إعدادات GitHub
+                    </button>
+                    <button class="btn btn-primary" onclick="testGithubConnection()">
+                        <i class="fas fa-plug"></i> اختبار الاتصال
+                    </button>
+                </div>
+
+                <div class="section">
+                    <h3><i class="fas fa-sync-alt"></i> تصحيح روابط الصور</h3>
+                    <p style="color: var(--text-light); margin-bottom: 15px;">
+                        تصحيح جميع روابط الصور لتشير إلى المستودع الحالي تلقائياً.
+                    </p>
+                    <button class="btn btn-warning" onclick="validateAndCorrectImageLinks()">
+                        <i class="fas fa-check-circle"></i> التحقق وتصحيح الروابط
+                    </button>
+                </div>
+
+                <div class="section">
+                    <h3><i class="fas fa-sync"></i> مزامنة الإعدادات</h3>
+                    
+                    <div class="sync-config">
+                        <div class="form-group">
+                            <label>نوع المزامنة:</label>
+                            <select id="syncType">
+                                <option value="upload">رفع الإعدادات إلى GitHub</option>
+                                <option value="download">تحميل الإعدادات من GitHub</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--text-light); margin-bottom: 15px;">
+                        عند حفظ الإعدادات، سيتم تخزينها محلياً وعلى GitHub ليتمكن جميع المستخدمين من رؤية التحديثات.
+                    </p>
+                    <button class="btn btn-success" onclick="saveAllSettings()">
+                        <i class="fas fa-save"></i> حفظ ومزامنة جميع الإعدادات
+                    </button>
+                    <button class="btn btn-secondary" onclick="loadFromGitHub()">
+                        <i class="fas fa-download"></i> تحميل الإعدادات من GitHub
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الأمان -->
+        <div id="security" class="tab-content">
+            <div class="section">
+                <h3><i class="fas fa-shield-alt"></i> إدارة كلمة المرور</h3>
+                
+                <div class="password-management">
+                    <div class="form-group">
+                        <label>كلمة المرور الحالية:</label>
+                        <input type="password" id="currentPassword" placeholder="أدخل كلمة المرور الحالية">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>كلمة المرور الجديدة:</label>
+                        <input type="password" id="newPassword" placeholder="أدخل كلمة المرور الجديدة">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>تأكيد كلمة المرور الجديدة:</label>
+                        <input type="password" id="confirmPassword" placeholder="أعد إدخال كلمة المرور الجديدة">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="changeAdminPassword()">
+                        <i class="fas fa-key"></i> تغيير كلمة المرور
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحكم -->
+        <div class="section">
+            <h3><i class="fas fa-tools"></i> إجراءات النظام</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                <button class="btn btn-success" onclick="saveAllSettings()">
+                    <i class="fas fa-save"></i> حفظ ومزامنة الكل
+                </button>
+                <button class="btn btn-secondary" onclick="exportSettings()">
+                    <i class="fas fa-file-export"></i> تصدير الإعدادات
+                </button>
+                <button class="btn btn-danger" onclick="resetSettings()">
+                    <i class="fas fa-redo"></i> إعادة التعيين
+                </button>
+                <button class="btn btn-primary" onclick="goToStore()">
+                    <i class="fas fa-store"></i> الذهاب للمتجر
+                </button>
+            </div>
+        </div>
+
+        <!-- استيراد الإعدادات -->
+        <div class="section">
+            <h3><i class="fas fa-file-import"></i> استيراد الإعدادات</h3>
+            <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importSettings(this)">
+            <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">
+                <i class="fas fa-folder-open"></i> اختيار ملف الإعدادات
+            </button>
+        </div>
+    </div>
+
+    <!-- الإشعارات -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText"></span>
+    </div>
+
+    <script>
+        // متغيرات النظام
+        let CONFIG = STORE_CONFIG;
+        let selectedImageFile = null;
+        let currentStore = '';
+        let stores = JSON.parse(localStorage.getItem('stores') || '{}');
+        let recentUploads = JSON.parse(localStorage.getItem('recent_uploads') || '[]');
+        let currentProductPage = 1;
+        const productsPerPage = 3;
+
+        // التحقق من كلمة المرور
+        function checkAdminPassword() {
+            const password = document.getElementById('adminPassword').value;
+            const errorElement = document.getElementById('passwordError');
+            const savedPassword = localStorage.getItem('adminPassword') || '1234321';
+            
+            if (password === savedPassword) {
+                document.getElementById('passwordProtection').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                localStorage.setItem('adminAuthenticated', 'true');
+                loadStores();
+                showNotification('تم تسجيل الدخول بنجاح', 'success');
+            } else {
+                errorElement.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+                showNotification('كلمة المرور غير صحيحة', 'error');
+            }
+        }
+
+        // التحقق من حالة المصادقة
+        function checkAuthentication() {
+            const isAuthenticated = localStorage.getItem('adminAuthenticated');
+            
+            if (isAuthenticated === 'true') {
+                document.getElementById('passwordProtection').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                loadStores();
+            } else {
+                document.getElementById('passwordProtection').style.display = 'block';
+                document.getElementById('adminPanel').style.display = 'none';
+            }
+        }
+
+        // إدارة المتاجر
+        function loadStores() {
+            const selector = document.getElementById('storeSelector');
+            selector.innerHTML = '<option value="">-- اختر المتجر --</option>';
+            
+            Object.keys(stores).forEach(storeId => {
+                selector.innerHTML += `<option value="${storeId}">${stores[storeId].name || storeId}</option>`;
+            });
+            
+            // إذا كان هناك متاجر، اختر الأول
+            if (Object.keys(stores).length > 0 && !currentStore) {
+                currentStore = Object.keys(stores)[0];
+                selector.value = currentStore;
+                switchStore();
+            }
+        }
+
+        function switchStore() {
+            currentStore = document.getElementById('storeSelector').value;
+            if (currentStore && stores[currentStore]) {
+                const store = stores[currentStore];
+                document.getElementById('currentStoreName').textContent = store.name || currentStore;
+                
+                // تحميل إعدادات المتجر
+                CONFIG = store.config || STORE_CONFIG;
+                loadSettings();
+                loadGithubConfig();
+                updateStats();
+                
+                showNotification(`تم التبديل إلى متجر: ${store.name || currentStore}`, 'success');
+            }
+        }
+
+        function addNewStore() {
+            const storeName = prompt('أدخل اسم المتجر الجديد:');
+            if (storeName) {
+                const storeId = 'store_' + Date.now();
+                stores[storeId] = {
+                    name: storeName,
+                    config: JSON.parse(JSON.stringify(STORE_CONFIG)),
+                    github: {}
+                };
+                
+                localStorage.setItem('stores', JSON.stringify(stores));
+                loadStores();
+                
+                // التبديل إلى المتجر الجديد
+                currentStore = storeId;
+                document.getElementById('storeSelector').value = storeId;
+                switchStore();
+                
+                showNotification('تم إضافة متجر جديد', 'success');
+            }
+        }
+
+        function saveCurrentStore() {
+            if (currentStore && stores[currentStore]) {
+                stores[currentStore].config = CONFIG;
+                localStorage.setItem('stores', JSON.stringify(stores));
+            }
+        }
+
+        // السماح بالضغط على Enter
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAdminPassword();
+            }
+        });
+
+        // تغيير كلمة المرور
+        function changeAdminPassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const savedPassword = localStorage.getItem('adminPassword') || '1234321';
+            
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                showNotification('يرجى ملء جميع الحقول', 'error');
+                return;
+            }
+            
+            if (currentPassword !== savedPassword) {
+                showNotification('كلمة المرور الحالية غير صحيحة', 'error');
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                showNotification('كلمات المرور الجديدة غير متطابقة', 'error');
+                return;
+            }
+            
+            if (newPassword.length < 4) {
+                showNotification('كلمة المرور يجب أن تكون على الأقل 4 أحرف', 'error');
+                return;
+            }
+            
+            localStorage.setItem('adminPassword', newPassword);
+            
+            // مسح الحقول
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+            
+            showNotification('تم تغيير كلمة المرور بنجاح', 'success');
+        }
+
+        // تحميل الإعدادات
+        function loadSettings() {
+            loadProductsManagement();
+            loadWilayasList();
+            loadDiscountSettings();
+            loadStoreInfo();
+            loadAgeSizes();
+            loadAvailableColors();
+            loadAvailableSizes();
+            updateStats();
+            loadRecentUploads();
+        }
+
+        // تحديث الإحصائيات
+        function updateStats() {
+            document.getElementById('productsCount').textContent = Object.keys(CONFIG.PRODUCTS).length;
+            document.getElementById('wilayasCount').textContent = Object.keys(CONFIG.DELIVERY_PRICES).length;
+            
+            // حالة التوكن
+            const tokenStatus = document.getElementById('tokenStatus');
+            const githubConfig = getGithubConfig();
+            if (githubConfig.token && githubConfig.username && githubConfig.repo) {
+                tokenStatus.textContent = 'مفعل';
+                tokenStatus.style.color = 'var(--success-color)';
+            } else {
+                tokenStatus.textContent = 'غير مضبوط';
+                tokenStatus.style.color = 'var(--danger-color)';
+            }
+            
+            const lastUpdate = localStorage.getItem('lastUpdate');
+            document.getElementById('lastUpdate').textContent = lastUpdate ? new Date(lastUpdate).toLocaleString('ar-EG') : '-';
+        }
+
+        // تبديل الألسنة
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // إدارة المنتجات مع التقسيم للصفحات
+        function loadProductsManagement() {
+            const container = document.getElementById('productsList');
+            container.innerHTML = '';
+            
+            const productIds = Object.keys(CONFIG.PRODUCTS);
+            const totalPages = Math.ceil(productIds.length / productsPerPage);
+            
+            // تحديث أزرار الصفحات
+            updatePagination(totalPages);
+            
+            // عرض المنتجات للصفحة الحالية
+            const startIndex = (currentProductPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const currentProducts = productIds.slice(startIndex, endIndex);
+            
+            if (currentProducts.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 20px;">لا توجد منتجات لعرضها</p>';
+                return;
+            }
+            
+            currentProducts.forEach(id => {
+                const product = CONFIG.PRODUCTS[id];
+                container.innerHTML += `
+                    <div class="product-item">
+                        <div class="form-group">
+                            <label>اسم المنتج:</label>
+                            <input type="text" value="${product.name}" 
+                                   onchange="updateProductField(${id}, 'name', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>السعر (دج):</label>
+                            <input type="number" value="${product.price}" 
+                                   onchange="updateProductField(${id}, 'price', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>الصورة:</label>
+                            <input type="text" value="${product.image}" 
+                                   onchange="updateProductField(${id}, 'image', this.value)">
+                            <button class="btn btn-secondary small-btn" onclick="switchTab('upload'); document.getElementById('imageUrl').value = '${product.image}'">
+                                <i class="fas fa-copy"></i> نسخ الرابط الحالي
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label>الوصف:</label>
+                            <textarea onchange="updateProductField(${id}, 'description', this.value)">${product.description}</textarea>
+                        </div>
+                        
+                        <div class="size-color-config">
+                            <div class="size-color-item">
+                                <label>القياسات المتاحة:</label>
+                                <div class="checkbox-group">
+                                    ${CONFIG.AVAILABLE_SIZES.map(size => `
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="size_${id}_${size}" 
+                                                   ${product.availableSizes && product.availableSizes.includes(size) ? 'checked' : ''}
+                                                   onchange="updateProductSizes(${id}, '${size}', this.checked)">
+                                            <label for="size_${id}_${size}">${size}</label>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            
+                            <div class="size-color-item">
+                                <label>الألوان المتاحة:</label>
+                                <div class="checkbox-group">
+                                    ${CONFIG.AVAILABLE_COLORS.map(color => `
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="color_${id}_${color}" 
+                                                   ${product.availableColors && product.availableColors.includes(color) ? 'checked' : ''}
+                                                   onchange="updateProductColors(${id}, '${color}', this.checked)">
+                                            <label for="color_${id}_${color}">${color}</label>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-danger small-btn" onclick="removeProduct(${id})">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function updatePagination(totalPages) {
+            const paginationTop = document.getElementById('productsPagination');
+            const paginationBottom = document.getElementById('productsPaginationBottom');
+            
+            let paginationHTML = '';
+            
+            if (currentProductPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="changeProductPage(${currentProductPage - 1})"><i class="fas fa-chevron-right"></i> السابق</button>`;
+            }
+            
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentProductPage ? 'active' : ''}" onclick="changeProductPage(${i})">${i}</button>`;
+            }
+            
+            if (currentProductPage < totalPages) {
+                paginationHTML += `<button class="page-btn" onclick="changeProductPage(${currentProductPage + 1})">التالي <i class="fas fa-chevron-left"></i></button>`;
+            }
+            
+            paginationTop.innerHTML = paginationHTML;
+            paginationBottom.innerHTML = paginationHTML;
+        }
+
+        function changeProductPage(page) {
+            currentProductPage = page;
+            loadProductsManagement();
+        }
+
+        function updateProductField(id, field, value) {
+            CONFIG.PRODUCTS[id][field] = field === 'price' ? parseInt(value) : value;
+            saveCurrentStore();
+            showNotification('تم تحديث المنتج', 'success');
+        }
+
+        function updateProductSizes(id, size, isChecked) {
+            if (!CONFIG.PRODUCTS[id].availableSizes) {
+                CONFIG.PRODUCTS[id].availableSizes = [];
+            }
+            if (isChecked) {
+                if (!CONFIG.PRODUCTS[id].availableSizes.includes(size)) {
+                    CONFIG.PRODUCTS[id].availableSizes.push(size);
+                }
+            } else {
+                CONFIG.PRODUCTS[id].availableSizes = CONFIG.PRODUCTS[id].availableSizes.filter(s => s !== size);
+            }
+            saveCurrentStore();
+            showNotification('تم تحديث القياسات', 'success');
+        }
+
+        function updateProductColors(id, color, isChecked) {
+            if (!CONFIG.PRODUCTS[id].availableColors) {
+                CONFIG.PRODUCTS[id].availableColors = [];
+            }
+            if (isChecked) {
+                if (!CONFIG.PRODUCTS[id].availableColors.includes(color)) {
+                    CONFIG.PRODUCTS[id].availableColors.push(color);
+                }
+            } else {
+                CONFIG.PRODUCTS[id].availableColors = CONFIG.PRODUCTS[id].availableColors.filter(c => c !== color);
+            }
+            saveCurrentStore();
+            showNotification('تم تحديث الألوان', 'success');
+        }
+
+        function addNewProduct() {
+            const newId = Math.max(...Object.keys(CONFIG.PRODUCTS).map(Number)) + 1;
+            CONFIG.PRODUCTS[newId] = {
+                name: `مودال ${newId}`,
+                price: 3300,
+                image: `https://raw.githubusercontent.com/ahcene43/WAW/main/images/modal${newId}.jpg`,
+                description: "وصف المنتج الجديد",
+                availableSizes: [...CONFIG.AVAILABLE_SIZES],
+                availableColors: CONFIG.AVAILABLE_COLORS.slice(0, 4)
+            };
+            
+            // الانتقال إلى الصفحة الأخيرة
+            const totalPages = Math.ceil(Object.keys(CONFIG.PRODUCTS).length / productsPerPage);
+            currentProductPage = totalPages;
+            
+            saveCurrentStore();
+            loadProductsManagement();
+            showNotification('تم إضافة منتج جديد', 'success');
+        }
+
+        function removeProduct(id) {
+            if (Object.keys(CONFIG.PRODUCTS).length > 1) {
+                if (confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+                    delete CONFIG.PRODUCTS[id];
+                    
+                    // تعديل الصفحة الحالية إذا لزم الأمر
+                    const totalPages = Math.ceil(Object.keys(CONFIG.PRODUCTS).length / productsPerPage);
+                    if (currentProductPage > totalPages) {
+                        currentProductPage = totalPages;
+                    }
+                    
+                    saveCurrentStore();
+                    loadProductsManagement();
+                    showNotification('تم حذف المنتج', 'success');
+                }
+            } else {
+                showNotification('لا يمكن حذف جميع المنتجات', 'error');
+            }
+        }
+
+        // إدارة التوصيل
+        function loadWilayasList() {
+            const select = document.getElementById('wilayaSelect');
+            select.innerHTML = '<option value="">-- اختر الولاية --</option>';
+            Object.keys(CONFIG.DELIVERY_PRICES).forEach(wilaya => {
+                select.innerHTML += `<option value="${wilaya}">${wilaya}</option>`;
+            });
+        }
+
+        function loadWilayaPrice() {
+            const wilaya = document.getElementById('wilayaSelect').value;
+            const form = document.getElementById('wilayaPriceForm');
+            
+            if (wilaya) {
+                const prices = CONFIG.DELIVERY_PRICES[wilaya];
+                document.getElementById('homePrice').value = prices.home;
+                document.getElementById('deskPrice').value = prices.desk;
+                form.classList.remove('hidden');
+            } else {
+                form.classList.add('hidden');
+            }
+        }
+
+        function saveWilayaPrice() {
+            const wilaya = document.getElementById('wilayaSelect').value;
+            CONFIG.DELIVERY_PRICES[wilaya].home = parseInt(document.getElementById('homePrice').value);
+            CONFIG.DELIVERY_PRICES[wilaya].desk = parseInt(document.getElementById('deskPrice').value);
+            saveCurrentStore();
+            showNotification('تم حفظ سعر التوصيل لـ ' + wilaya, 'success');
+        }
+
+        // إعدادات الخصم
+        function loadDiscountSettings() {
+            document.getElementById('minQuantity').value = CONFIG.DISCOUNTS.minQuantityForDiscount;
+            document.getElementById('discountValue').value = CONFIG.DISCOUNTS.discountPerItem;
+        }
+
+        function saveDiscountSettings() {
+            CONFIG.DISCOUNTS.minQuantityForDiscount = parseInt(document.getElementById('minQuantity').value);
+            CONFIG.DISCOUNTS.discountPerItem = parseInt(document.getElementById('discountValue').value);
+            saveCurrentStore();
+            showNotification('تم حفظ إعدادات الخصم', 'success');
+        }
+
+        // معلومات المتجر
+        function loadStoreInfo() {
+            document.getElementById('storeName').value = CONFIG.STORE_INFO.name;
+            document.getElementById('storeTagline').value = CONFIG.STORE_INFO.tagline;
+            document.getElementById('storePhones').value = CONFIG.STORE_INFO.phoneNumbers.join(', ');
+        }
+
+        function saveStoreInfo() {
+            CONFIG.STORE_INFO.name = document.getElementById('storeName').value;
+            CONFIG.STORE_INFO.tagline = document.getElementById('storeTagline').value;
+            CONFIG.STORE_INFO.phoneNumbers = document.getElementById('storePhones').value.split(',').map(p => p.trim());
+            saveCurrentStore();
+            showNotification('تم حفظ معلومات المتجر', 'success');
+        }
+
+        // القياسات المتاحة
+        function loadAvailableSizes() {
+            document.getElementById('availableSizes').value = CONFIG.AVAILABLE_SIZES.join(', ');
+        }
+
+        function saveAvailableSizes() {
+            const sizesInput = document.getElementById('availableSizes').value;
+            CONFIG.AVAILABLE_SIZES = sizesInput.split(',').map(size => size.trim()).filter(size => size);
+            saveCurrentStore();
+            showNotification('تم حفظ القياسات المتاحة', 'success');
+            loadProductsManagement();
+            loadAgeSizes();
+        }
+
+        // الألوان المتاحة
+        function loadAvailableColors() {
+            document.getElementById('availableColors').value = CONFIG.AVAILABLE_COLORS.join(', ');
+        }
+
+        function saveAvailableColors() {
+            const colorsInput = document.getElementById('availableColors').value;
+            CONFIG.AVAILABLE_COLORS = colorsInput.split(',').map(color => color.trim()).filter(color => color);
+            saveCurrentStore();
+            showNotification('تم حفظ الألوان المتاحة', 'success');
+            loadProductsManagement();
+        }
+
+        // جدول الأعمار والقياسات
+        function loadAgeSizes() {
+            const container = document.getElementById('ageSizesList');
+            container.innerHTML = '';
+            
+            Object.keys(CONFIG.AGE_SIZES).forEach(age => {
+                container.innerHTML += `
+                    <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end;">
+                        <div>
+                            <label>العمر (سنوات):</label>
+                            <input type="number" value="${age}" min="3" max="12" 
+                                   onchange="updateAgeSizeKey('${age}', this.value)">
+                        </div>
+                        <div>
+                            <label>القياس:</label>
+                            <select onchange="updateAgeSizeValue('${age}', this.value)">
+                                ${CONFIG.AVAILABLE_SIZES.map(size => 
+                                    `<option value="${size}" ${CONFIG.AGE_SIZES[age] === size ? 'selected' : ''}>${size}</option>`
+                                ).join('')}
+                            </select>
+                        </div>
+                        <div>
+                            <button class="btn btn-danger small-btn" onclick="removeAgeSize('${age}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function updateAgeSizeKey(oldAge, newAge) {
+            if (newAge && newAge >= 3 && newAge <= 12) {
+                const size = CONFIG.AGE_SIZES[oldAge];
+                delete CONFIG.AGE_SIZES[oldAge];
+                CONFIG.AGE_SIZES[newAge] = size;
+                saveCurrentStore();
+                loadAgeSizes();
+                showNotification('تم تحديث العمر', 'success');
+            }
+        }
+
+        function updateAgeSizeValue(age, size) {
+            CONFIG.AGE_SIZES[age] = size;
+            saveCurrentStore();
+            showNotification('تم تحديث القياس', 'success');
+        }
+
+        function addNewAgeSize() {
+            const ages = Object.keys(CONFIG.AGE_SIZES).map(Number);
+            const maxAge = Math.max(...ages);
+            if (maxAge < 12) {
+                const newAge = maxAge + 1;
+                CONFIG.AGE_SIZES[newAge] = CONFIG.AVAILABLE_SIZES[CONFIG.AVAILABLE_SIZES.length - 1] || 'XL';
+                saveCurrentStore();
+                loadAgeSizes();
+                showNotification('تم إضافة عمر جديد', 'success');
+            } else {
+                showNotification('لا يمكن إضافة عمر أكبر من 12 سنة', 'error');
+            }
+        }
+
+        function removeAgeSize(age) {
+            if (Object.keys(CONFIG.AGE_SIZES).length > 1) {
+                if (confirm('هل أنت متأكد من حذف هذا العمر؟')) {
+                    delete CONFIG.AGE_SIZES[age];
+                    saveCurrentStore();
+                    loadAgeSizes();
+                    showNotification('تم حذف العمر', 'success');
+                }
+            } else {
+                showNotification('يجب أن يكون هناك على الأقل عمر واحد في الجدول', 'error');
+            }
+        }
+
+        // إعدادات GitHub
+        function loadGithubConfig() {
+            if (currentStore && stores[currentStore]) {
+                const githubConfig = stores[currentStore].github || {};
+                document.getElementById('githubToken').value = githubConfig.token || '';
+                document.getElementById('githubUsername').value = githubConfig.username || '';
+                document.getElementById('githubRepo').value = githubConfig.repo || '';
+                document.getElementById('githubBranch').value = githubConfig.branch || 'main';
+                document.getElementById('githubDefaultFolder').value = githubConfig.defaultFolder || 'images';
+                document.getElementById('uploadFolderPath').value = githubConfig.defaultFolder || 'images';
+            }
+        }
+
+        function saveGithubConfig() {
+            if (currentStore && stores[currentStore]) {
+                stores[currentStore].github = {
+                    token: document.getElementById('githubToken').value,
+                    username: document.getElementById('githubUsername').value,
+                    repo: document.getElementById('githubRepo').value,
+                    branch: document.getElementById('githubBranch').value,
+                    defaultFolder: document.getElementById('githubDefaultFolder').value
+                };
+                localStorage.setItem('stores', JSON.stringify(stores));
+                showNotification('تم حفظ إعدادات GitHub', 'success');
+                updateStats();
+            }
+        }
+
+        function getGithubConfig() {
+            if (currentStore && stores[currentStore]) {
+                return stores[currentStore].github || {};
+            }
+            return {};
+        }
+
+        // اختبار اتصال GitHub
+        async function testGithubConnection() {
+            const config = getGithubConfig();
+            if (!config.token || !config.username || !config.repo) {
+                showNotification('يرجى إدخال إعدادات GitHub أولاً', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${config.username}/${config.repo}`, {
+                    headers: {
+                        'Authorization': `token ${config.token}`
+                    }
+                });
+
+                if (response.ok) {
+                    showNotification('الاتصال بنجاح! المستودع متاح.', 'success');
+                } else {
+                    showNotification('فشل الاتصال. تحقق من الإعدادات.', 'error');
+                }
+            } catch (error) {
+                showNotification('خطأ في الاتصال: ' + error.message, 'error');
+            }
+        }
+
+        // تصحيح روابط الصور
+        function validateAndCorrectImageLinks() {
+            if (validateGithubConfig()) {
+                if (confirm('تم اكتشاف أن بعض الصور من مستودع مختلف. هل تريد تصحيح الروابط تلقائياً؟')) {
+                    if (correctImageLinks()) {
+                        loadProductsManagement();
+                        showNotification('تم تصحيح روابط الصور بنجاح', 'success');
+                    } else {
+                        showNotification('فشل في تصحيح الروابط', 'error');
+                    }
+                }
+            } else {
+                showNotification('جميع روابط الصور تشير إلى المستودع الصحيح', 'success');
+            }
+        }
+
+        // رفع الصور إلى GitHub
+        function handleImageSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedImageFile = file;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    document.getElementById('uploadButton').disabled = false;
+                    document.getElementById('uploadStatus').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function uploadImage() {
+            if (!selectedImageFile) {
+                showNotification('Veuillez sélectionner une image d\'abord', 'error');
+                return;
+            }
+
+            const config = getGithubConfig();
+            if (!config.token || !config.username || !config.repo) {
+                showNotification('Veuillez configurer les paramètres GitHub d\'abord', 'error');
+                return;
+            }
+
+            const folderPath = document.getElementById('uploadFolderPath').value.trim() || 'images';
+            const uploadButton = document.getElementById('uploadButton');
+            const uploadStatus = document.getElementById('uploadStatus');
+            
+            uploadButton.disabled = true;
+            uploadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Téléchargement en cours...';
+            
+            try {
+                // استخدام FileReader لتحويل الصورة إلى base64
+                const base64Image = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(selectedImageFile);
+                });
+
+                const path = `${folderPath}/${Date.now()}-${selectedImageFile.name}`;
+                const message = `Ajouter image: ${selectedImageFile.name}`;
+                
+                // إزالة بادئة base64
+                const base64Content = base64Image.split(',')[1];
+                
+                const response = await fetch(`https://api.github.com/repos/${config.username}/${config.repo}/contents/${path}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${config.token}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        content: base64Content,
+                        branch: config.branch || 'main'
+                    })
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    const imageUrl = result.content.download_url;
+                    document.getElementById('imageUrl').value = imageUrl;
+                    uploadStatus.textContent = '✅ Image téléchargée avec succès';
+                    uploadStatus.className = 'upload-status success';
+                    uploadStatus.style.display = 'block';
+                    
+                    // حفظ الصورة في قائمة المرفوعات حديثاً
+                    addToRecentUploads({
+                        url: imageUrl,
+                        repo: config.repo,
+                        folder: folderPath,
+                        filename: selectedImageFile.name,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    copyImageUrl();
+                    showNotification('Image téléchargée avec succès', 'success');
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Échec du téléchargement de l\'image');
+                }
+                
+            } catch (error) {
+                uploadStatus.textContent = '❌ Erreur de téléchargement: ' + error.message;
+                uploadStatus.className = 'upload-status error';
+                uploadStatus.style.display = 'block';
+                showNotification('Erreur de téléchargement: ' + error.message, 'error');
+            } finally {
+                uploadButton.disabled = false;
+                uploadButton.innerHTML = '<i class="fas fa-upload"></i> Télécharger l\'image vers GitHub';
+            }
+        }
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        function copyImageUrl() {
+            const imageUrl = document.getElementById('imageUrl');
+            imageUrl.select();
+            document.execCommand('copy');
+            showNotification('تم نسخ رابط الصورة', 'success');
+        }
+
+        // إدارة الصور المرفوعة حديثاً
+        function addToRecentUploads(uploadInfo) {
+            recentUploads.unshift(uploadInfo);
+            // الاحتفاظ بآخر 10 صور فقط
+            if (recentUploads.length > 10) {
+                recentUploads = recentUploads.slice(0, 10);
+            }
+            localStorage.setItem('recent_uploads', JSON.stringify(recentUploads));
+            loadRecentUploads();
+        }
+
+        function loadRecentUploads() {
+            const container = document.getElementById('recentUploads');
+            container.innerHTML = '';
+            
+            if (recentUploads.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-light);">لا توجد صور مرفوعة حديثاً</p>';
+                return;
+            }
+            
+            recentUploads.forEach((upload, index) => {
+                container.innerHTML += `
+                    <div class="token-item" style="margin-bottom: 10px;">
+                        <div>
+                            <strong>${upload.filename}</strong><br>
+                            <small style="color: var(--text-light);">
+                                المستودع: ${upload.repo} | المجلد: ${upload.folder}<br>
+                                ${new Date(upload.timestamp).toLocaleString('ar-EG')}
+                            </small>
+                        </div>
+                        <div class="token-actions">
+                            <button class="btn btn-secondary small-btn" onclick="document.getElementById('imageUrl').value = '${upload.url}'; copyImageUrl()">
+                                <i class="fas fa-copy"></i> نسخ
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // مزامنة الإعدادات مع GitHub
+        async function saveAllSettings() {
+            const config = getGithubConfig();
+            if (!config.token || !config.username || !config.repo) {
+                showNotification('يرجى إعداد إعدادات GitHub أولاً', 'error');
+                return;
+            }
+
+            // حفظ محلي
+            saveCurrentStore();
+            localStorage.setItem('lastUpdate', new Date().toISOString());
+            updateStats();
+            
+            // محاولة الحفظ على GitHub
+            const syncStatus = document.getElementById('syncStatus');
+            try {
+                syncStatus.textContent = '⏳ جاري مزامنة الإعدادات مع GitHub...';
+                syncStatus.className = 'sync-status';
+                syncStatus.style.display = 'block';
+                
+                await saveToGitHubWithToken(CONFIG, config);
+                
+                syncStatus.textContent = '✅ تم حفظ ومزامنة الإعدادات بنجاح!';
+                syncStatus.className = 'sync-status success';
+                
+                showNotification('تم حفظ الإعدادات محلياً وعلى GitHub بنجاح!', 'success');
+            } catch (error) {
+                syncStatus.textContent = '❌ فشل المزامنة: ' + error.message;
+                syncStatus.className = 'sync-status error';
+                
+                showNotification('تم الحفظ محلياً، لكن فشل الحفظ على GitHub', 'warning');
+            }
+        }
+
+        // تحميل الإعدادات من GitHub
+        async function loadFromGitHub() {
+            const config = getGithubConfig();
+            if (!config.token || !config.username || !config.repo) {
+                showNotification('يرجى إعداد إعدادات GitHub أولاً', 'error');
+                return;
+            }
+
+            try {
+                const success = await loadRemoteConfigWithToken(config);
+                if (success) {
+                    CONFIG = STORE_CONFIG;
+                    saveCurrentStore();
+                    loadSettings();
+                    showNotification('تم تحميل الإعدادات من GitHub بنجاح!', 'success');
+                } else {
+                    showNotification('فشل تحميل الإعدادات من GitHub', 'error');
+                }
+            } catch (error) {
+                showNotification('فشل تحميل الإعدادات من GitHub: ' + error.message, 'error');
+            }
+        }
+
+        // وظائف النظام
+        function exportSettings() {
+            const dataStr = JSON.stringify(CONFIG, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = 'store-config.json';
+            link.click();
+            showNotification('تم تصدير الإعدادات', 'success');
+        }
+
+        function importSettings(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedConfig = JSON.parse(e.target.result);
+                        CONFIG = importedConfig;
+                        saveCurrentStore();
+                        loadSettings();
+                        showNotification('تم استيراد الإعدادات بنجاح', 'success');
+                    } catch (error) {
+                        showNotification('خطأ في ملف الإعدادات', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            }
+            input.value = '';
+        }
+
+        function resetSettings() {
+            if (confirm('⚠️ هل أنت متأكد من إعادة تعيين جميع الإعدادات؟ سيتم فقدان جميع التغييرات.')) {
+                CONFIG = JSON.parse(JSON.stringify(STORE_CONFIG));
+                saveCurrentStore();
+                loadSettings();
+                showNotification('تم إعادة التعيين بنجاح', 'success');
+            }
+        }
+
+        function goToStore() {
+            window.location.href = 'index.html';
+        }
+
+        // نظام الإشعارات
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            // تغيير الأيقونة حسب نوع الإشعار
+            const icon = notification.querySelector('i');
+            icon.className = 
+                type === 'success' ? 'fas fa-check-circle' :
+                type === 'error' ? 'fas fa-exclamation-circle' :
+                'fas fa-exclamation-triangle';
+            
+            // إخفاء الإشعار بعد 3 ثوان
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // دعم التوكنات في المزامنة
+        async function saveToGitHubWithToken(config, githubConfig) {
+            // هذه دالة مساعدة تحتاج إلى تنفيذها في config.js
+            if (typeof saveToGitHub === 'function') {
+                return await saveToGitHub(config, githubConfig);
+            } else {
+                throw new Error('دالة المزامنة غير متوفرة');
+            }
+        }
+
+        async function loadRemoteConfigWithToken(githubConfig) {
+            // هذه دالة مساعدة تحتاج إلى تنفيذها في config.js
+            if (typeof loadRemoteConfig === 'function') {
+                return await loadRemoteConfig(githubConfig);
+            } else {
+                throw new Error('دالة التحميل غير متوفرة');
+            }
+        }
+
+        // تحميل الإعدادات عند بدء التشغيل
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthentication();
+        });
+    </script>
+</body>
+</html>
